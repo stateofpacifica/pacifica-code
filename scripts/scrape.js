@@ -1,9 +1,12 @@
 /**
  * This file generates a JSON structure representing the Utah Code and its contents. 
  * The JSON is then processed and converted into the HTML page rendered as the PC code.
+ * 
+ * This script takes a REALLY long time to run. If possible, changes to the JSON should be
+ * written into the build script in order to prevent having to run this. 
  */
 import fs from "fs";
-import minimalArgs from "./args.js";
+import { minimalArgs } from "./utils.js";
 import puppeteer from "puppeteer";
 import { load } from "cheerio";
 
@@ -131,7 +134,7 @@ async function main() {
                         let idx = $(e).children().first().text();
                         let name = $(e).children().last().text();
                         let url = $(e).children().first().children('a').attr('href');
-                        
+
                         url = `https://le.utah.gov/xcode/${url.slice(6)}`;
 
                         await page.goto(url);
@@ -140,7 +143,7 @@ async function main() {
                         $ = load(await page.content());
 
                         part['sections'].push({
-                            idx: idx, 
+                            idx: idx,
                             name: name,
                             url: url,
                             content: $("#secdiv").html()
