@@ -18,6 +18,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
     - name: Deploy to neocities
       uses: bcomnes/deploy-to-neocities@master # dont use master in production
       with:
