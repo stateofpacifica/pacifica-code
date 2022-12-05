@@ -24,7 +24,7 @@ $("ul", () => {
 });
 
 tree.forEach(title => {
-    let { $, save } = new Doc(`Pacifica Code ${title.idx}`, "assets/style.css");
+    let { $, save } = new Doc(`Pacifica Code ${title.idx}`, "/assets/style.css");
     try {
         mkdirSync(`${buildDir}/${urlify(title.idx)}`);
     } catch {
