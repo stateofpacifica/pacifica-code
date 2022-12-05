@@ -34,7 +34,7 @@ tree.forEach(title => {
     $("h1", `${title.idx} - ${title.name}`);
     title.chapters.forEach(chapter => {
         let cdir = `${buildDir}/${urlify(title.idx)}/${urlify(chapter.idx)}`;
-        let cdoc = new Doc(`Pacifica Code Chapter ${title.idx.split(" ")[0]}-${chapter.idx.split(" ")[0]}`, "../assets/style.css");
+        let cdoc = new Doc(`Pacifica Code Chapter ${title.idx.split(" ")[0]}-${chapter.idx.split(" ")[0]}`, "/assets/style.css");
 
         mkdirSync(cdir);
         cdoc.$("h1", `${chapter.idx} - ${chapter.name}`);
@@ -49,7 +49,7 @@ tree.forEach(title => {
                 let idx = section.url.split("/").pop();
                 idx = idx.substring(0, idx.indexOf(".html"));
 
-                let sdoc = new Doc(`Pacifica Code Section ${idx}`, "../../assets/style.css");
+                let sdoc = new Doc(`Pacifica Code Section ${idx}`, "/assets/style.css");
                 sdoc.raw(section.content);
                 sdoc.save(`${cdir}/${idx}.html`)
 
@@ -64,7 +64,7 @@ tree.forEach(title => {
                 let pdir = `${cdir}/${urlify(part.idx)}`;
                 mkdirSync(pdir);
 
-                let pdoc = new Doc(`Pacifica Code Chapter ${title.idx.split(" ")[0]}-${chapter.idx.split(" ")[0]}-${part.idx.split(" ")[0]}`, "../../assets/style.css");
+                let pdoc = new Doc(`Pacifica Code Chapter ${title.idx.split(" ")[0]}-${chapter.idx.split(" ")[0]}-${part.idx.split(" ")[0]}`, "/assets/style.css");
                 pdoc.$("h1", `${part.idx} - ${part.name}`);
 
                 cdoc.$("li", () => {
@@ -75,7 +75,7 @@ tree.forEach(title => {
                     let idx = section.url.split("/").pop();
                     idx = idx.substring(0, idx.indexOf(".html"));
 
-                    let sdoc = new Doc(`Pacifica Code Section ${idx}`, "../../../assets/style.css");
+                    let sdoc = new Doc(`Pacifica Code Section ${idx}`, "/assets/style.css");
                     sdoc.raw(section.content);
                     sdoc.save(`${pdir}/${idx}.html`);
 
