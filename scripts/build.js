@@ -18,14 +18,18 @@ $("ul", () => {
     tree.forEach(title => {
         if (title.idx == "") return;
         $("li", () => {
-            $("a", `${title.idx} - ${title.name}`, { href: `/${urlify(title.idx)}` });
+            $("a", `${title.idx} - ${title.name.replace("Utah", "Pacifica")}`, { href: `/${urlify(title.idx)}` });
         });
     });
 });
 
 tree.forEach(title => {
     let { $, save } = new Doc(`Pacifica Code ${title.idx}`, "assets/style.css");
-    mkdirSync(`${buildDir}/${urlify(title.idx)}`);
+    try {
+        mkdirSync(`${buildDir}/${urlify(title.idx)}`);
+    } catch {
+        return;
+    }
 
     $("h1", `${title.idx} - ${title.name}`);
     title.chapters.forEach(chapter => {
